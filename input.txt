@@ -1,0 +1,25 @@
+include arquivo.txt;
+
+global $divisor = 3;
+
+main()
+var
+    $status;
+begin
+    $a = 20;
+    $b = 30;
+    $c = 40;
+    $media = 30;
+    if ($media <= 3)
+    begin
+        $status = 0;
+    end
+    else if ($media <= 6)
+    begin
+        $status = 2;
+    end
+    else 
+    begin
+        $status = 3;
+    end
+end
