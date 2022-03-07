@@ -10,16 +10,14 @@ begin
     $b = 30;
     $c = 40;
     $media = 30;
-    if ($media <= 3)
+    while ($media <= 10)
     begin
-        $status = 0;
+        $b = 3;
+        $media = $media;
     end
-    else if ($media <= 6)
+
+    do 
     begin
-        $status = 2;
-    end
-    else 
-    begin
-        $status = 3;
-    end
+        $a = 10;
+    end while($media < 10);
 end

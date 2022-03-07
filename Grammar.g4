@@ -5,7 +5,7 @@ TODO: Tipos de dados: int, double, boolean, string
 DONE: Variáveis locais e globais
 TODO: Comandos de entrada e saída: scanf e printf
 DONE: Controle de fluxo: if, if/else e switch
-TODO: Laços de Repetição: while, do/while e for
+TODO: Laços de Repetição: while, do/while e TODO: for
 TODO: Funções com passagem de parâmetro por valor e referência
 TODO: Criação de bibliotecas externas e disponibilização de bibliotecas internas
 */
@@ -19,13 +19,18 @@ include_:
 global_:
     GB decl
     ;
-block :
-    decl // declaração. começa sempre com '$'
-    | dec // decisao. começa com if
-;
 main_:
     'main' OP CL 'var' decl* 'begin' block* 'end'
     ;
+block : 
+    decl // declaração. começa sempre com '$'
+    | dec // decisao. começa com if
+    | rept // repetição: while, do/while e for
+;
+rept :
+    WHL OP exp_dec CL 'begin' block+ 'end'
+    | DOWL 'begin' block+ 'end' WHL OP exp_dec CL ';'
+;
 decl :
     VAR ';'
     | VAR atr ';'
@@ -34,7 +39,7 @@ atr :
     '=' fact
     ;
 dec :
-    'if' '(' exp_dec ')' 'begin' block 'end' rest*
+    'if' '(' exp_dec ')' 'begin' block+ 'end' rest*
     ;
 rest : 
     'else' (dec | 'begin' block 'end') // dec --> else if. block --> else
@@ -56,23 +61,26 @@ fact:
     ;
 
 
-ATB: '=';
-SMCL: ';';
-EQ: '==';
-DIF: '!=';
-PL: '>';
-MN: '<';
-INC: 'include';
-GB: 'global';
-VAR_B: 'var';
-BEGIN_B: 'begin';
-END_B: 'end';
-MAIN: 'main';
-IF: 'if';
-ELSE: 'else';
-OP: '(';
-CL: ')';
-NUM: [0-9]+('.'[0-9]+)?;
-ARQ: [a-zA-Z]+'.'[a-z]+;
-VAR: '$'[a-z]+;
-WS: [ \n\t\r] -> skip;
+ATB     : '=';
+SMCL    : ';';
+EQ      : '==';
+DIF     : '!=';
+PL      : '>';
+MN      : '<';
+INC     : 'include';
+GB      : 'global';
+VAR_B   : 'var';
+BEGIN_B : 'begin';
+END_B   : 'end';
+MAIN    : 'main';
+IF      : 'if';
+ELSE    : 'else';
+WHL     : 'while';
+DOWL    : 'do';
+FOR     : 'for';
+OP      : '(';
+CL      : ')';
+NUM     : [0-9]+('.'[0-9]+)?;
+ARQ     : [a-zA-Z]+'.'[a-z]+;
+VAR     : '$'[a-z]+;
+WS      : [ \n\t\r] -> skip;
