@@ -20,20 +20,19 @@ global_:
     GB decl
     ;
 main_:
-    'main' OP CL 'var' decl* 'begin' block* 'end'
+    'main' OP CL 'begin' block* 'end'
     ;
 block : 
-    decl // declaração. começa sempre com '$'
+    decl // no escopo das funções pode ter so atribuição
     | dec // decisao. começa com if
     | rept // repetição: while, do/while e for
-;
+    ;
 rept :
     WHL OP exp_dec CL 'begin' block+ 'end'
     | DOWL 'begin' block+ 'end' WHL OP exp_dec CL ';'
-;
+    ;
 decl :
-    VAR ';'
-    | VAR atr ';'
+    VAR (';'| atr ';')
     ;
 atr :
     '=' fact

@@ -3,9 +3,8 @@ include arquivo.txt;
 global $divisor = 3;
 
 main()
-var
-    $status;
 begin
+    $status;
     $a = 20;
     $b = 30;
     $c = 40;
