@@ -3,15 +3,15 @@ grammar Grammar;
 /*
 TODO: Tipos de dados: int, double, boolean, string
 DONE: Variáveis locais e globais
-TODO: Comandos de entrada e saída: scanf e printf
+TODO: Comandos de entrada e saída: printf e TODO: scanf
 DONE: Controle de fluxo: if, if/else e switch
-TODO: Laços de Repetição: while, do/while e TODO: for
+DONE: Laços de Repetição: while, do/while e for
 TODO: Funções com passagem de parâmetro por valor e referência
 TODO: Criação de bibliotecas externas e disponibilização de bibliotecas internas
 */
 
 start: 
-    (include_)? (global_)* main_
+    INC_SIGN (include_)? (global_)* main_
     ;
 include_:
     'include' ARQ ';'
@@ -26,10 +26,15 @@ block :
     decl // no escopo das funções pode ter so atribuição
     | dec // decisao. começa com if
     | rept // repetição: while, do/while e for
+    | prt
+    ;
+prt:
+    'print' OP fact CL ';'
     ;
 rept :
     WHL OP exp_dec CL 'begin' block+ 'end'
     | DOWL 'begin' block+ 'end' WHL OP exp_dec CL ';'
+    | FOR OP decl exp_dec ';' VAR atr CL 'begin' block+ 'end' // isso ta horrivel. TODO: deixar bonito
     ;
 decl :
     VAR (';'| atr ';')
@@ -59,7 +64,7 @@ fact:
     | VAR
     ;
 
-
+INC_SIGN: '#';
 ATB     : '=';
 SMCL    : ';';
 EQ      : '==';
@@ -83,3 +88,4 @@ NUM     : [0-9]+('.'[0-9]+)?;
 ARQ     : [a-zA-Z]+'.'[a-z]+;
 VAR     : '$'[a-z]+;
 WS      : [ \n\t\r] -> skip;
+PRT: 'print';

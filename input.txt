@@ -1,4 +1,4 @@
-include arquivo.txt;
+#include arquivo.txt;
 
 global $divisor = 3;
 
@@ -19,4 +19,11 @@ begin
     begin
         $a = 10;
     end while($media < 10);
+
+    for($i=0; $i<=10; $i=10)
+    begin
+        $a = 10;
+    end
+
+    print(10.3);
 end
