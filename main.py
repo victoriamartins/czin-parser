@@ -2,7 +2,7 @@ from parser_gerado.GrammarParser import GrammarParser
 from parser_gerado.GrammarLexer import GrammarLexer
 from antlr4 import *
 
-'''
+
 def upload_include(entrada):
     arq_compilar = open(entrada, 'r').readlines()
     arq_compilar_writable = open(entrada, 'w')
@@ -13,17 +13,19 @@ def upload_include(entrada):
             for caracter in linha:
                 if caracter != ';' and caracter != '#' and caracter != '\n':
                     nome_include += caracter
-            print(nome_include)
-
-            #abrir arquivo
-            #injetar conteúdo do arquivo deletando a linha do include
+            arq_incluir = open(nome_include, 'r').readlines()
+            for linha_incluir in arq_incluir:
+                arq_compilar_writable.write(linha_incluir)
         else:
-            break'''
+            break
+
+    for linha in arq_compilar:
+        if linha[0] != '#':
+            arq_compilar_writable.write(linha)
     
 
-entrada = 'input.txt';
-# upload_include(entrada)
-
+entrada = 'input.txt'
+upload_include(entrada)
 
 input_stream = FileStream(entrada)
 
