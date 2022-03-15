@@ -1,13 +1,17 @@
-#include arquivo.txt;
+global $abelha = 40;
 
-global $divisor = 3;
+_nomefuncao($a;)
+begin
+    print($a);
+end
 
 main()
 begin
     $status;
     $a = 20;
     $b = 30;
-    $c = 40;
+    $c;
+    scan($c);
     $media = 30;
     while ($media <= 10)
     begin

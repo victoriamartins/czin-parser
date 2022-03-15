@@ -1,20 +1,19 @@
 grammar Grammar;
 
 /*
-TODO: Tipos de dados: int, double, boolean, string
 DONE: Variáveis locais e globais
-TODO: Comandos de entrada e saída: printf e TODO: scanf
+DONE: Comandos de entrada e saída: printf e scanf
 DONE: Controle de fluxo: if, if/else e switch
 DONE: Laços de Repetição: while, do/while e for
-TODO: Funções com passagem de parâmetro por valor e referência
+DONE: Funções com passagem de parâmetro por valor e referência
 TODO: Criação de bibliotecas externas e disponibilização de bibliotecas internas
 */
 
 start: 
-    INC_SIGN (include_)? (global_)* main_
+    (global_)* functions* main_
     ;
-include_:
-    'include' ARQ ';'
+functions:
+        NAMEF OP decl* CL BEGIN_B block* END_B
     ;
 global_:
     GB decl
@@ -26,7 +25,11 @@ block :
     decl // no escopo das funções pode ter so atribuição
     | dec // decisao. começa com if
     | rept // repetição: while, do/while e for
-    | prt
+    | prt // print
+    | scan
+    ;
+scan:
+    'scan' OP VAR CL ';'
     ;
 prt:
     'print' OP fact CL ';'
@@ -64,6 +67,7 @@ fact:
     | VAR
     ;
 
+SCAN    : 'scan';
 INC_SIGN: '#';
 ATB     : '=';
 SMCL    : ';';
@@ -84,6 +88,7 @@ DOWL    : 'do';
 FOR     : 'for';
 OP      : '(';
 CL      : ')';
+NAMEF   : '_'[a-z]+('_')?('-')?[a-z]+;
 NUM     : [0-9]+('.'[0-9]+)?;
 ARQ     : [a-zA-Z]+'.'[a-z]+;
 VAR     : '$'[a-z]+;
