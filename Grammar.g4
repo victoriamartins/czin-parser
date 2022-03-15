@@ -6,7 +6,6 @@ DONE: Comandos de entrada e saída: printf e scanf
 DONE: Controle de fluxo: if, if/else e switch
 DONE: Laços de Repetição: while, do/while e for
 DONE: Funções com passagem de parâmetro por valor e referência
-TODO: Criação de bibliotecas externas e disponibilização de bibliotecas internas
 */
 
 start: 
@@ -93,4 +92,4 @@ NUM     : [0-9]+('.'[0-9]+)?;
 ARQ     : [a-zA-Z]+'.'[a-z]+;
 VAR     : '$'[a-z]+;
 WS      : [ \n\t\r] -> skip;
-PRT: 'print';
+PRT     : 'print';
