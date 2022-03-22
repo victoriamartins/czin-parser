@@ -17,12 +17,12 @@ class GrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by GrammarParser#include_.
-    def enterInclude_(self, ctx:GrammarParser.Include_Context):
+    # Enter a parse tree produced by GrammarParser#functions.
+    def enterFunctions(self, ctx:GrammarParser.FunctionsContext):
         pass
 
-    # Exit a parse tree produced by GrammarParser#include_.
-    def exitInclude_(self, ctx:GrammarParser.Include_Context):
+    # Exit a parse tree produced by GrammarParser#functions.
+    def exitFunctions(self, ctx:GrammarParser.FunctionsContext):
         pass
 
 
@@ -50,6 +50,24 @@ class GrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by GrammarParser#block.
     def exitBlock(self, ctx:GrammarParser.BlockContext):
+        pass
+
+
+    # Enter a parse tree produced by GrammarParser#scan.
+    def enterScan(self, ctx:GrammarParser.ScanContext):
+        pass
+
+    # Exit a parse tree produced by GrammarParser#scan.
+    def exitScan(self, ctx:GrammarParser.ScanContext):
+        pass
+
+
+    # Enter a parse tree produced by GrammarParser#prt.
+    def enterPrt(self, ctx:GrammarParser.PrtContext):
+        pass
+
+    # Exit a parse tree produced by GrammarParser#prt.
+    def exitPrt(self, ctx:GrammarParser.PrtContext):
         pass
 
 
